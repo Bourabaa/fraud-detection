@@ -143,7 +143,7 @@ Real-time monitoring and observability are provided via **custom Grafana dashboa
 - Auto-refresh every 5 seconds
 
 ---
-**Working Application Screenshot:**
+**Working Application :**
 ![App in Action](assets/app.jpg)
 ![App in Action](assets/app_result.jpg)
 
