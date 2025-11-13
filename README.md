@@ -72,7 +72,7 @@ Handles **business logic, data processing**, and communication with the SageMake
 
 ---
 
-### API Gateway - AWS Lambda
+###  AWS Lambda
 AWS Lambda serves as a **serverless API proxy**, enabling low-latency HTTP requests handling.
 
 ![Lambda Function](assets/Lambda.jpg)
@@ -181,3 +181,30 @@ npm start
 # Run backend
 cd ../fraud-detection-backend
 npm run dev
+
+
+## ☁️ Cloud Deployment Setup
+
+**Prerequisites:**
+- AWS account with permissions for Amplify, Elastic Beanstalk, SageMaker, Lambda, and S3  
+- AWS CLI configured with credentials  
+- Node.js 18+ or 22+  
+- Git  
+
+**Steps:**
+
+### 1. Frontend (React → AWS Amplify)
+1. Go to **AWS Amplify Console** and connect the repository `fraud-detection-ui` (main branch).  
+2. Set environment variable in Amplify:  
+3. Deploy via Amplify. The app will be available at the Amplify domain, e.g., `https://main.d2xn8dxk7jllrd.amplifyapp.com`.  
+4. Future commits to the main branch automatically trigger redeployments.
+
+### 2. Backend (Node.js → AWS Elastic Beanstalk)
+1. Zip the backend code:
+```bash
+cd fraud-detection-backend
+zip -r app.zip . -x "*.git*" "node_modules/*"
+Deploy backend
+
+### 3. AWS Lambda serves as a **serverless API proxy**, enabling low-latency HTTP requests handling.
+
