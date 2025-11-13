@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Backend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Backend API</h1>
+    <p>Backend URL: <strong>http://frauddetection-env.eba-43pmkezt.us-east-1.elasticbeanstalk.com/api/predict</strong></p>
+    
+    <button onclick="testBackend()">Test Backend</button>
+    
+    <div id="result"></div>
+
+    <script>
+        async function testBackend() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Testing...';
+            resultDiv.className = '';
+            
+            try {
+                const response = await fetch('http://frauddetection-env.eba-43pmkezt.us-east-1.elasticbeanstalk.com/api/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        endpointName: 'fraud-detection-model-2025-11-11-13-30-24',
+                        features: [0.0,-1.359807,-0.072781,2.536347,1.378155,-0.338321,0.462388,0.239599,0.098698,0.363787,0.090794,-0.551600,-0.617801,-0.991390,-0.311169,1.468177,-0.470401,0.207971,0.025791,0.403993,0.251412,-0.018307,0.277838,-0.110474,0.066928,0.128539,-0.189115,0.133558,-0.021053,149.62]
+                    })
+                });
+                
+                const data = await response.json();
+                
+                resultDiv.textContent = '✅ Success!\n\nStatus: ' + response.status + '\n\nResponse:\n' + JSON.stringify(data, null, 2);
+                resultDiv.className = 'success';
+            } catch (error) {
+                resultDiv.textContent = '❌ Error:\n\n' + error.message;
+                resultDiv.className = 'error';
+            }
+        }
+    </script>
+</body>
+</html>
+
