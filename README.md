@@ -130,7 +130,7 @@ Amazon S3 stores **training data, model artifacts, and deployment assets** secur
 ### Monitoring - Grafana
 Real-time monitoring and observability are provided via **custom Grafana dashboards**.
 
-![Grafana Dashboard](assets/grafana-dashboard.png)
+![Grafana Dashboard](assets/Grafana.png)
 
 **Monitored Metrics:**
 - SageMaker endpoint status and latency  
